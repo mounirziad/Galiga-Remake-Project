@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2621147449562933732}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,6 +105,7 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 1484969952747994879}
   bulletPrefab: {fileID: 5018199474911715076, guid: 74276e80488efb54e9a307311c7321ee, type: 3}
   bulletSpeed: 10
+  fireRate: 0.2
 --- !u!50 &4962979369506022137
 Rigidbody2D:
   serializedVersion: 4
