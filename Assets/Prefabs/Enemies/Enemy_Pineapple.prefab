@@ -480,6 +480,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Pineapple
       objectReference: {fileID: 0}
+    - target: {fileID: 8219424232133057954, guid: 52ab5fd7601f377468b5e92afb090c36, type: 3}
+      propertyPath: m_TagString
+      value: PineappleEnemy
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4366972228295115080, guid: 52ab5fd7601f377468b5e92afb090c36, type: 3}
     m_RemovedGameObjects: []

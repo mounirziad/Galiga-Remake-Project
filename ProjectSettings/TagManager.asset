@@ -7,6 +7,9 @@ TagManager:
   - Boundary
   - Enemy
   - PlayerBullet
+  - AppleEnemy
+  - CookieEnemy
+  - PineappleEnemy
   layers:
   - Default
   - TransparentFX

@@ -26,11 +26,27 @@ public class PlayerBullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D whatDidIHit)
     {
         // If player bullet hits an enemy, enemy and bullet are destroyed and enemiesAlive count goes down
-        if (whatDidIHit.CompareTag("Enemy"))
+        if (whatDidIHit.CompareTag("AppleEnemy") || whatDidIHit.CompareTag("PineappleEnemy") || whatDidIHit.CompareTag("CookieEnemy"))
         {
             GameObject gameManagerObject = GameObject.Find("Game Manager");
             GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
             gameManager.enemiesAlive--;
+
+            //Reference score int in ScoreScript
+
+            if (whatDidIHit.CompareTag("AppleEnemy"))
+            {
+                //Add apple points to score
+            }
+            else if (whatDidIHit.CompareTag("CookieEnemy"))
+            {
+                //Add cookie points to score
+            }
+            else if (whatDidIHit.CompareTag("PineappleEnemy"))
+            {
+                //Add pineapplce points to score
+            }
+            
             Destroy(whatDidIHit.gameObject);
             Destroy(gameObject);
         }

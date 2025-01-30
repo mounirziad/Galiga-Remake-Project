@@ -123,6 +123,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_AppleCritter
       objectReference: {fileID: 0}
+    - target: {fileID: 8219424232133057954, guid: 52ab5fd7601f377468b5e92afb090c36, type: 3}
+      propertyPath: m_TagString
+      value: AppleEnemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
