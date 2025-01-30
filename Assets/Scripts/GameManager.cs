@@ -9,12 +9,15 @@ public class GameManager : MonoBehaviour
     public Transform playerSpawnpoint;
     public Transform enemySpawnpoint;
     private int playerLives = 3;
+    public int enemiesAlive;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject enemyManagerObject = GameObject.Find("Enemies");
+        EnemyManager enemyManager = enemyManagerObject.GetComponent<EnemyManager>();
+        enemiesAlive = enemyManager.totalEnemies;
         SpawnPlayer();
-        SpawnEnemy();
     }
 
     void Update()
@@ -25,11 +28,6 @@ public class GameManager : MonoBehaviour
     void SpawnPlayer() //Spawns player
     {
         Instantiate(player, playerSpawnpoint.position, playerSpawnpoint.rotation);
-    }
-
-    void SpawnEnemy() //Spawns enemies
-    {
-        Instantiate(enemy, enemySpawnpoint.position, enemySpawnpoint.rotation);
     }
 
     public void RespawnPlayer()

@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,17 +13,17 @@ public class BulletScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 bottomEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0f, 0f));
 
-    }
-
-    void OnTriggerEnter2D(Collider2D whatDidIHit)
-    {
-        if (whatDidIHit.CompareTag("Enemy"))
+        // Despawns enemy bullets
+        if (gameObject.transform.position.y <= bottomEdge.y -1.0f)
         {
-            Destroy(whatDidIHit.gameObject);
             Destroy(gameObject);
         }
-        else if (whatDidIHit.CompareTag("Player"))
+    }
+    void OnTriggerEnter2D(Collider2D whatDidIHit)
+    {
+        if (whatDidIHit.CompareTag("Player"))
         {
             Destroy(whatDidIHit.gameObject);
             Destroy(gameObject);
@@ -33,6 +32,5 @@ public class BulletScript : MonoBehaviour
             // Call the RespawnPlayer function in the GameManager
             gameManager.RespawnPlayer();
         }
-
     }
 }
