@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+
+public class ScoreScript : MonoBehaviour
+{
+
+    public int score = 0;
+    private int oneUpScore;
+    private bool oneUpFlag = false;
+    private int enemiesAlive;
+    private int prevEnemiesAlive;
+    [SerializeField] TextMeshProUGUI scoreText; // The TextMeshPro object to display
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        GameObject enemyManagerObject = GameObject.Find("Enemies");
+        EnemyManager enemyManager = enemyManagerObject.GetComponent<EnemyManager>();
+        enemiesAlive = enemyManager.totalEnemies;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (score > oneUpScore && oneUpFlag == false)
+        {
+            // playerLives += 1;
+        }
+
+        if (enemiesAlive < prevEnemiesAlive)
+        {
+            score += 500;
+        }
+
+        prevEnemiesAlive = enemiesAlive;
+        GameObject enemyCount = GameObject.Find("Enemies");
+        EnemyManager enemyManager = enemyCount.GetComponent<EnemyManager>();
+        enemiesAlive = enemyManager.totalEnemies;
+
+        Debug.Log(enemiesAlive + "    " + score);
+        scoreText.text = score.ToString();
+    }
+}
