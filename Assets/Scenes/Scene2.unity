@@ -351,12 +351,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6ff89775c1f574da9066b28bab39a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 5521062891564536407, guid: 0fabde4c1f5cec74f9c33eb63288d91e, type: 3}
-  enemy: {fileID: 0}
+  playerPrefab: {fileID: 5521062891564536407, guid: 0fabde4c1f5cec74f9c33eb63288d91e, type: 3}
+  bossPrefab: {fileID: 6213727905138103359, guid: 1fa19449cccfe9d4db837ceeafb73069, type: 3}
   playerSpawnpoint: {fileID: 1484796734}
-  enemySpawnpoint: {fileID: 0}
-  BossSpawnPoint: {fileID: 1519949707}
-  Boss: {fileID: 6213727905138103359, guid: 1fa19449cccfe9d4db837ceeafb73069, type: 3}
+  bossSpawnpoint: {fileID: 1519949707}
 --- !u!4 &742893189
 Transform:
   m_ObjectHideFlags: 0
@@ -614,7 +612,7 @@ Transform:
   m_GameObject: {fileID: 1519949706}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.83, y: 1.0757442, z: -0.012421119}
+  m_LocalPosition: {x: -1.76, y: 3.56, z: -0.012421119}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

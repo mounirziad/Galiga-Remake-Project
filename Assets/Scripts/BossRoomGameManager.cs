@@ -1,51 +1,33 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossRoomGameManager : MonoBehaviour
 {
-
-    public GameObject player;
-    public GameObject enemy;
+    public GameObject playerPrefab;
+    public GameObject bossPrefab;
     public Transform playerSpawnpoint;
-    public Transform enemySpawnpoint;
-    private int playerLives = 3;
-    public Transform BossSpawnPoint;
-    public GameObject Boss;
-    // Start is called before the first frame update
+    public Transform bossSpawnpoint;
+    private GameObject playerInstance;
+    private GameObject bossInstance;
+
     void Start()
     {
-        SpawnBoss();
         SpawnPlayer();
-
+        StartCoroutine(SpawnBossSequence());
     }
 
-    // Update is called once per frame
-    void Update()
+    void SpawnPlayer()
     {
-
+        playerInstance = Instantiate(playerPrefab, playerSpawnpoint.position, playerSpawnpoint.rotation);
+        playerInstance.GetComponent<PlayerController>().isFrozen = true; // Freeze player at start
     }
 
-    void SpawnPlayer() //Spawns player
+    IEnumerator SpawnBossSequence()
     {
-        Instantiate(player, playerSpawnpoint.position, playerSpawnpoint.rotation);
-    }
+        bossInstance = Instantiate(bossPrefab, bossSpawnpoint.position, bossSpawnpoint.rotation);
+        yield return new WaitForSeconds(3.0f); // Wait for boss to complete intro
 
-    void SpawnEnemy() //Spawns enemies
-    {
-        Instantiate(enemy, enemySpawnpoint.position, enemySpawnpoint.rotation);
+        // Unfreeze player after boss finishes its movement
+        playerInstance.GetComponent<PlayerController>().Unfreeze();
     }
-    void SpawnBoss()
-    {
-        Instantiate(Boss, BossSpawnPoint.position, BossSpawnPoint.rotation);
-
-    }
-
-    public void RespawnPlayer()
-    {
-        SpawnPlayer();
-        playerLives--;
-        Debug.Log("Player lives: " + playerLives);
-    }
-
 }
