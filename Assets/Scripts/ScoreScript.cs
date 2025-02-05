@@ -40,7 +40,6 @@ public class ScoreScript : MonoBehaviour
         EnemyManager enemyManager = enemyCount.GetComponent<EnemyManager>();
         enemiesAlive = enemyManager.totalEnemies;
 
-        Debug.Log(enemiesAlive + "    " + score);
         scoreText.text = score.ToString();
     }
 }

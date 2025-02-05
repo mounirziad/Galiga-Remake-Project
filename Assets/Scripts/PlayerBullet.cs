@@ -30,22 +30,25 @@ public class PlayerBullet : MonoBehaviour
         // If player bullet hits an enemy, enemy and bullet are destroyed and enemiesAlive count goes down
         if (whatDidIHit.CompareTag("AppleEnemy") || whatDidIHit.CompareTag("PineappleEnemy") || whatDidIHit.CompareTag("CookieEnemy"))
         {
+            GameObject gameManagerObject = GameObject.Find("Game Manager");
             GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
             gameManager.enemiesAlive--;
 
-            //Reference score int in ScoreScript
+            // Find the ScoreScript component and modify the score
+            GameObject scoreManagerObject = GameObject.Find("ScoreManager");
+            ScoreScript scoreScript = scoreManagerObject.GetComponent<ScoreScript>();
 
             if (whatDidIHit.CompareTag("AppleEnemy"))
             {
-                //Add apple points to score
+                scoreScript.score += 100; // Add apple points to score
             }
             else if (whatDidIHit.CompareTag("CookieEnemy"))
             {
-                //Add cookie points to score
+                scoreScript.score += 200; // Add cookie points to score
             }
             else if (whatDidIHit.CompareTag("PineappleEnemy"))
             {
-                //Add pineapplce points to score
+                scoreScript.score += 300; // Add pineapple points to score
             }
 
             Destroy(whatDidIHit.gameObject);

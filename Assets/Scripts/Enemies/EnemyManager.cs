@@ -20,7 +20,7 @@ public class EnemyManager : MonoBehaviour
         for (int row = 0; row < this.rows; row++)
         {
             float width = 1.25f * (this.columns - 1);
-            float height = 1.25f * (this.rows - 1);
+            float height = (1.25f * (this.rows - 1)) + 2;
             Vector3 centering = new Vector2(-width / 2, -height / 2);
             Vector3 rowPosition = new Vector3(centering.x, centering.y + (row * 1.25f), 0.0f);
 
