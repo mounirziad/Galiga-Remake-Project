@@ -9,18 +9,27 @@ public class BossProjectile : MonoBehaviour
     void Update()
     {
         transform.position += Vector3.down * speed * Time.deltaTime;
-    }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        Vector3 bottomEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0f, 0f));
+
+        // Despawns enemy bullets
+        if (gameObject.transform.position.y <= bottomEdge.y - 1.0f)
         {
-            // Handle player getting hit
             Destroy(gameObject);
         }
-        else if (collision.gameObject.CompareTag("Boundary"))
+    }
+
+
+    void OnTriggerEnter2D(Collider2D whatDidIHit)
+    {
+        if (whatDidIHit.CompareTag("Player"))
         {
-            Destroy(gameObject); // Destroy when hitting the screen edge
+            Destroy(whatDidIHit.gameObject);
+            Destroy(gameObject);
+            GameObject gameManagerObject = GameObject.FindGameObjectWithTag("GameController");
+            GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
+            // Call the RespawnPlayer function in the GameManager
+            gameManager.RespawnPlayer();
         }
     }
 }

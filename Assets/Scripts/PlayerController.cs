@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public float bulletSpeed = 10.0f;
     public float fireRate = 0.2f;
     private float nextFireTime = 0f;
-    public bool isFrozen = true; // Player starts frozen
+    public bool isFrozen = false; // Player starts frozen
 
     void Update()
     {

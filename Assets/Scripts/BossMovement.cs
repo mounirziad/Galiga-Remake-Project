@@ -8,7 +8,7 @@ public class BossMovement : MonoBehaviour
     public Transform firePoint;
     public float fireRate = 1.5f;
     private bool canShoot = false;
-
+    private Vector3 direction = Vector2.right;
     public Sprite normalSprite;  // Default boss sprite
     public Sprite fireSprite;    // Firing sprite
     private SpriteRenderer spriteRenderer;
@@ -23,7 +23,20 @@ public class BossMovement : MonoBehaviour
     {
         if (canShoot)
         {
-            transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
+            this.transform.position += direction * this.moveSpeed * Time.deltaTime;
+
+            Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
+            Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+
+            // Switches movement direction when hitting an edge
+            if (direction == Vector3.right && transform.position.x >= (rightEdge.x - 1.5f))
+            {
+                direction.x *= -1.0f;
+            }
+            else if (direction == Vector3.left && transform.position.x <= (leftEdge.x + 1.5f))
+            {
+                direction.x *= -1.0f;
+            }
         }
     }
 
@@ -37,7 +50,7 @@ public class BossMovement : MonoBehaviour
 
     IEnumerator BossIntroSequence()
     {
-        while (transform.position.y > 1f)
+        while (transform.position.y > 10f)
         {
             transform.position += Vector3.down * moveSpeed * Time.deltaTime;
             yield return null;
@@ -45,7 +58,7 @@ public class BossMovement : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
 
-        while (transform.position.y < 2.5f)
+        while (transform.position.y < 13f)
         {
             transform.position += Vector3.up * moveSpeed * Time.deltaTime;
             yield return null;

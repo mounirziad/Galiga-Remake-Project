@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
+    GameObject gameManagerObject;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        gameManagerObject = GameObject.FindGameObjectWithTag("GameController");
     }
 
     // Update is called once per frame
@@ -28,7 +30,6 @@ public class PlayerBullet : MonoBehaviour
         // If player bullet hits an enemy, enemy and bullet are destroyed and enemiesAlive count goes down
         if (whatDidIHit.CompareTag("AppleEnemy") || whatDidIHit.CompareTag("PineappleEnemy") || whatDidIHit.CompareTag("CookieEnemy"))
         {
-            GameObject gameManagerObject = GameObject.Find("Game Manager");
             GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
             gameManager.enemiesAlive--;
 
@@ -46,7 +47,7 @@ public class PlayerBullet : MonoBehaviour
             {
                 //Add pineapplce points to score
             }
-            
+
             Destroy(whatDidIHit.gameObject);
             Destroy(gameObject);
         }

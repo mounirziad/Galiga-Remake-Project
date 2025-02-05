@@ -27,7 +27,7 @@ public class EnemyBullet : MonoBehaviour
         {
             Destroy(whatDidIHit.gameObject);
             Destroy(gameObject);
-            GameObject gameManagerObject = GameObject.Find("Game Manager");
+            GameObject gameManagerObject = GameObject.FindGameObjectWithTag("GameController");
             GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
             // Call the RespawnPlayer function in the GameManager
             gameManager.RespawnPlayer();

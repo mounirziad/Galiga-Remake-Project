@@ -11,7 +11,7 @@ public class EnemyManager : MonoBehaviour
     public int rows = 5;
     public int columns = 11;
     public float speed = 1.0f;
-    private Vector3 direction = Vector2.right;
+    public Vector3 direction = Vector2.right;
     public int totalEnemies => rows * columns;
 
     private void Awake()
