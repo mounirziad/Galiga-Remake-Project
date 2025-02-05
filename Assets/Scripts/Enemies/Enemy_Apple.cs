@@ -37,7 +37,7 @@ public class Enemy_Apple : MonoBehaviour
     void Shoot()
     {
         // Apple critters shoot more as the player kills more enemies
-        if (Random.value < (1.0f / (float)enemiesAlive))
+        if (Random.value < (1.0f / enemiesAlive))
         {
             var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             bullet.GetComponent<Rigidbody2D>().velocity = -bulletSpawnPoint.up * bulletSpeed;

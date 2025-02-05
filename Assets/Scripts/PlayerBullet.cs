@@ -30,7 +30,6 @@ public class PlayerBullet : MonoBehaviour
         // If player bullet hits an enemy, enemy and bullet are destroyed and enemiesAlive count goes down
         if (whatDidIHit.CompareTag("AppleEnemy") || whatDidIHit.CompareTag("PineappleEnemy") || whatDidIHit.CompareTag("CookieEnemy"))
         {
-            GameObject gameManagerObject = GameObject.Find("Game Manager");
             GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
             gameManager.enemiesAlive--;
 

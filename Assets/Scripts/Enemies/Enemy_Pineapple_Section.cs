@@ -7,7 +7,7 @@ public class Enemy_Pineapple_Section : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,17 +20,18 @@ public class Enemy_Pineapple_Section : MonoBehaviour
     {
         if (whatDidIHit.CompareTag("Player"))
         {
-            Destroy(whatDidIHit.gameObject);
-            Destroy(transform.parent.gameObject);
             GameObject gameManagerObject = GameObject.FindGameObjectWithTag("GameController");
             GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
             // Call the RespawnPlayer function in the GameManager
             gameManager.RespawnPlayer();
+            Destroy(whatDidIHit.gameObject);
+            Destroy(transform.parent.gameObject);
         }
         else if (whatDidIHit.CompareTag("PlayerBullet"))
         {
             Enemy_Pineapple enemyPineapple = GetComponentInParent<Enemy_Pineapple>();
-            enemyPineapple.numSections --;
+            enemyPineapple.numSections--;
+            enemyPineapple.addSectionPoints();
             Destroy(whatDidIHit.gameObject);
             Destroy(gameObject);
         }
