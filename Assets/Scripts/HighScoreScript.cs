@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class HighScoreScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private TextMeshProUGUI highScoreText; // The text to display the high score
+    [SerializeField] private ScoreScript scoreScript; // Reference to the ScoreScript
+
+    private int highScore = 0; // To store the current high score
+
     void Start()
     {
-        
+        // Initialize the high score text
+        highScoreText.text = highScore.ToString();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Check if the current score is higher than the high score
+        if (scoreScript.score > highScore)
+        {
+            highScore = scoreScript.score; // Update the high score
+            highScoreText.text = highScore.ToString(); // Update the high score text
+        }
     }
 }

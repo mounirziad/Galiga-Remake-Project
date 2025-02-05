@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     public float bulletSpeed = 10;
     public float fireRate = 0.2f;
     private float nextFireTime = 0f;
+<<<<<<< Updated upstream
+=======
+    public bool isFrozen = false; // Player starts frozen
+>>>>>>> Stashed changes
 
     // Start is called before the first frame update
     void Start()
