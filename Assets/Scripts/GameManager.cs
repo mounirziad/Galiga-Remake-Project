@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject BossShield;
     public GameObject player;
     public GameObject boss;
     public Transform playerSpawnpoint;
@@ -16,7 +17,6 @@ public class GameManager : MonoBehaviour
     Scene currentScene;
     private bool firstSpawn;
 
-    // Start is called before the first frame update
     void Start()
     {
         firstSpawn = true;
@@ -45,17 +45,17 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-
+        DestroyBossShield();
     }
 
-    void SpawnPlayer() //Spawns player
+    void SpawnPlayer()
     {
         playerInstance = Instantiate(player, playerSpawnpoint.position, playerSpawnpoint.rotation);
 
         if (currentScene.name == "Scene2" && firstSpawn)
         {
             firstSpawn = false;
-            playerInstance.GetComponent<PlayerController>().isFrozen = true; // Freeze player at start
+            playerInstance.GetComponent<PlayerController>().isFrozen = true;
         }
     }
 
@@ -69,9 +69,38 @@ public class GameManager : MonoBehaviour
     IEnumerator SpawnBossSequence()
     {
         bossInstance = Instantiate(boss, bossSpawnpoint.position, bossSpawnpoint.rotation);
-        yield return new WaitForSeconds(3.0f); // Wait for boss to complete intro
 
-        // Unfreeze player after boss finishes its movement
+        Transform shieldTransform = bossInstance.transform.Find("CitrusShield");
+
+        if (shieldTransform != null)
+        {
+            BossShield = shieldTransform.gameObject;
+        }
+        else
+        {
+            Debug.LogWarning("BossShield not found! Make sure it exists in the boss prefab.");
+        }
+
+        yield return new WaitForSeconds(3.0f);
+
         playerInstance.GetComponent<PlayerController>().Unfreeze();
+    }
+
+    public void DestroyBossShield()
+    {
+        if (enemiesAlive == 0)
+        {
+            if (BossShield != null)
+            {
+                Destroy(BossShield);
+            }
+
+            // Switch boss attack to laser mode
+            BossAttack bossAttack = bossInstance.GetComponent<BossAttack>();
+            if (bossAttack != null)
+            {
+                bossAttack.SwitchToLaser();
+            }
+        }
     }
 }

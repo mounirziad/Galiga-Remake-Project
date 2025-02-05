@@ -35,8 +35,11 @@ public class Enemy_Pineapple : MonoBehaviour
         Vector3 bottomEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0f, 0f));
 
         // Despawns enemy when off screen
-        if (gameObject.transform.position.y <= bottomEdge.y -1.0f)
+        if (gameObject.transform.position.y <= bottomEdge.y - 1.0f)
         {
+            GameObject gameManagerObject = GameObject.FindGameObjectWithTag("GameController");
+            GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
+            gameManager.enemiesAlive--;
             Destroy(gameObject);
         }
     }

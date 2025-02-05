@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BossMovement : MonoBehaviour
 {
+    public float bossHealth = 20f;
     public float moveSpeed;
     public GameObject projectilePrefab;
     public Transform firePoint;
@@ -13,9 +14,12 @@ public class BossMovement : MonoBehaviour
     public Sprite fireSprite;    // Firing sprite
     private SpriteRenderer spriteRenderer;
 
+    private BossAttack bossAttack; // Reference to BossAttack script
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get the sprite renderer
+        bossAttack = GetComponent<BossAttack>(); // Get the BossAttack component
         StartCoroutine(BossIntroSequence());
     }
 
@@ -46,6 +50,11 @@ public class BossMovement : MonoBehaviour
         {
             moveSpeed *= -1;
         }
+
+        if (collision.gameObject.tag == "PlayerBullet")
+        {
+            bossHealth = bossHealth - 1;
+        }
     }
 
     IEnumerator BossIntroSequence()
@@ -65,23 +74,6 @@ public class BossMovement : MonoBehaviour
         }
 
         canShoot = true;
-        StartCoroutine(ShootProjectiles());
-    }
-
-    IEnumerator ShootProjectiles()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(fireRate);
-            StartCoroutine(FireAnimation()); // Trigger sprite change when shooting
-        }
-    }
-
-    IEnumerator FireAnimation()
-    {
-        spriteRenderer.sprite = fireSprite; // Change to firing sprite
-        Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-        yield return new WaitForSeconds(0.2f); // Brief delay to show firing sprite
-        spriteRenderer.sprite = normalSprite; // Switch back to normal sprite
+        bossAttack.StartShooting(); // Start the attack routine
     }
 }
