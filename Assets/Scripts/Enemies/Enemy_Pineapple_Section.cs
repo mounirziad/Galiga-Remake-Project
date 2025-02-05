@@ -22,6 +22,7 @@ public class Enemy_Pineapple_Section : MonoBehaviour
         {
             GameObject gameManagerObject = GameObject.FindGameObjectWithTag("GameController");
             GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
+            gameManager.enemiesAlive--;
             // Call the RespawnPlayer function in the GameManager
             gameManager.RespawnPlayer();
             Destroy(whatDidIHit.gameObject);
