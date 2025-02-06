@@ -16,4 +16,12 @@ public class CutsceneController : MonoBehaviour
     {
         SceneManager.LoadScene(nextSceneName); // Load the next scene
     }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            SceneManager.LoadScene(nextSceneName); // Load the next scene
+        }
+    }
 }

@@ -990,6 +990,8 @@ MonoBehaviour:
   bossSpawnpoint: {fileID: 0}
   enemiesAlive: 0
   enemiesdestroyed: 0
+  lifePrefab: {fileID: 638336960457197592, guid: 89b6fff81278fac4990a2f35ed5f1d7d, type: 3}
+  totalLives: 3
 --- !u!4 &920323572
 Transform:
   m_ObjectHideFlags: 0

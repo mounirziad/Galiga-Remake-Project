@@ -104,7 +104,7 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 1484969952747994879}
   bulletPrefab: {fileID: 5018199474911715076, guid: 74276e80488efb54e9a307311c7321ee, type: 3}
   bulletSpeed: 10
-  fireRate: 0.2
+  fireRate: 0.3
   isFrozen: 0
 --- !u!50 &4962979369506022137
 Rigidbody2D:

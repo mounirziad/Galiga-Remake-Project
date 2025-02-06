@@ -26,10 +26,12 @@ public class Enemy_Pineapple_Section : MonoBehaviour
         }
         else if (whatDidIHit.CompareTag("PlayerBullet"))
         {
+
             Destroy(whatDidIHit.gameObject);
 
             // Reduce number of sections left
             enemyPineapple.numSections--;
+            enemyPineapple.addSectionPoints();
 
             // Only decrement enemiesAlive and increment enemiesdestroyed when the whole pineapple is destroyed
             if (enemyPineapple.numSections == 0)

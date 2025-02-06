@@ -30,6 +30,11 @@ public class PlayerController : MonoBehaviour
             Shoot();
             nextFireTime = Time.time + fireRate;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     void Shoot()

@@ -9,12 +9,15 @@ public class Enemy_Pineapple : MonoBehaviour
     public float minDelay = 10.0f;
     public float maxDelay = 30.0f;
     public int numSections = 3;
-
+    GameObject scoreManagerObject;
+    ScoreScript scoreScript;
     private bool isMoving = false;
     public bool isCounted = false; // Flag to track if the enemy has been counted
 
     void Start()
     {
+        scoreManagerObject = GameObject.Find("ScoreManager");
+        scoreScript = scoreManagerObject.GetComponent<ScoreScript>();
         StartCoroutine(StartMovingAfterDelay());
     }
 
@@ -23,6 +26,12 @@ public class Enemy_Pineapple : MonoBehaviour
         if (isMoving)
         {
             Launch();
+        }
+
+        // Destroys enemy after all sections have been destroyed
+        if (numSections == 0)
+        {
+            Destroy(gameObject);
         }
 
         Vector3 bottomEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0f, 0f));
@@ -56,5 +65,10 @@ public class Enemy_Pineapple : MonoBehaviour
 
         isMoving = true;
         transform.SetParent(null);
+    }
+
+    public void addSectionPoints()
+    {
+        scoreScript.score += 100;
     }
 }

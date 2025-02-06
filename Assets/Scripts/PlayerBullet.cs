@@ -32,18 +32,24 @@ public class PlayerBullet : MonoBehaviour
             gameManager.enemiesAlive--;
             gameManager.enemiesdestroyed++;
 
-            // Add points to score based on enemy type
+            // Find the ScoreScript component and modify the score
+            GameObject scoreManagerObject = GameObject.Find("ScoreManager");
+            ScoreScript scoreScript = scoreManagerObject.GetComponent<ScoreScript>();
+
             if (whatDidIHit.CompareTag("AppleEnemy"))
             {
-                // Add apple points to score
+                //Add apple points to score
+                scoreScript.score += 100; // Add apple points to score
             }
             else if (whatDidIHit.CompareTag("CookieEnemy"))
             {
-                // Add cookie points to score
+                //Add cookie points to score
+                scoreScript.score += 200; // Add cookie points to score
             }
             else if (whatDidIHit.CompareTag("PineappleEnemy"))
             {
-                // Add pineapple points to score
+                //Add pineapplce points to score
+                scoreScript.score += 300; // Add pineapple points to score
             }
 
             Destroy(whatDidIHit.gameObject);
