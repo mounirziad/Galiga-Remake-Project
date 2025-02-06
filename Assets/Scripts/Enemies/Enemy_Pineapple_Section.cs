@@ -4,36 +4,41 @@ using UnityEngine;
 
 public class Enemy_Pineapple_Section : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnTriggerEnter2D(Collider2D whatDidIHit)
     {
+        GameObject gameManagerObject = GameObject.FindGameObjectWithTag("GameController");
+        GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
+        Enemy_Pineapple enemyPineapple = GetComponentInParent<Enemy_Pineapple>();
+
+        if (enemyPineapple.isCounted) // Skip if already counted
+        {
+            return;
+        }
+
         if (whatDidIHit.CompareTag("Player"))
         {
-            GameObject gameManagerObject = GameObject.FindGameObjectWithTag("GameController");
-            GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
+            enemyPineapple.isCounted = true; // Mark as counted
             gameManager.enemiesAlive--;
-            // Call the RespawnPlayer function in the GameManager
-            gameManager.RespawnPlayer();
+            gameManager.enemiesdestroyed++;
             Destroy(whatDidIHit.gameObject);
-            Destroy(transform.parent.gameObject);
+            Destroy(enemyPineapple.gameObject);
+            gameManager.RespawnPlayer();
         }
         else if (whatDidIHit.CompareTag("PlayerBullet"))
         {
-            Enemy_Pineapple enemyPineapple = GetComponentInParent<Enemy_Pineapple>();
-            enemyPineapple.numSections--;
-            enemyPineapple.addSectionPoints();
             Destroy(whatDidIHit.gameObject);
+
+            // Reduce number of sections left
+            enemyPineapple.numSections--;
+
+            // Only decrement enemiesAlive and increment enemiesdestroyed when the whole pineapple is destroyed
+            if (enemyPineapple.numSections == 0)
+            {
+                enemyPineapple.isCounted = true; // Mark as counted
+                gameManager.enemiesAlive--;
+                Destroy(enemyPineapple.gameObject);
+            }
+
             Destroy(gameObject);
         }
     }

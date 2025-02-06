@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     private float nextFireTime = 0f;
     public bool isFrozen = false; // Player starts frozen
 
-
     void Update()
     {
         if (isFrozen) return; // Prevent movement when frozen
@@ -30,11 +29,6 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
             nextFireTime = Time.time + fireRate;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
         }
     }
 

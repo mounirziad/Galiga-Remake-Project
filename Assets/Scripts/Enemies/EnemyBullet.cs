@@ -16,7 +16,7 @@ public class EnemyBullet : MonoBehaviour
         Vector3 bottomEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0f, 0f));
 
         // Despawns enemy bullets
-        if (gameObject.transform.position.y <= bottomEdge.y -1.0f)
+        if (gameObject.transform.position.y <= bottomEdge.y - 1.0f)
         {
             Destroy(gameObject);
         }

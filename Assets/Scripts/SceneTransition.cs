@@ -9,7 +9,7 @@ public class SceneTransition : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // Load the "SampleScene"
-            SceneManager.LoadScene("GeneralCombat");
+            SceneManager.LoadScene("Cutscene1");
         }
     }
 }

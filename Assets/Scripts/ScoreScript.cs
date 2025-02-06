@@ -36,10 +36,11 @@ public class ScoreScript : MonoBehaviour
         }
 
         prevEnemiesAlive = enemiesAlive;
-        GameObject gameManagerObject = GameObject.FindGameObjectWithTag("GameController");
-        GameManager gameManager = gameManagerObject.GetComponent<GameManager>();
-        enemiesAlive = gameManager.enemiesAlive;
+        GameObject enemyCount = GameObject.Find("Enemies");
+        EnemyManager enemyManager = enemyCount.GetComponent<EnemyManager>();
+        enemiesAlive = enemyManager.totalEnemies;
 
+        Debug.Log(enemiesAlive + "    " + score);
         scoreText.text = score.ToString();
     }
 }
