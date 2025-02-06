@@ -14,16 +14,30 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        Vector3 leftEdge = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
+        Vector3 rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, Camera.main.nearClipPlane));
+
         if (isFrozen) return; // Prevent movement when frozen
 
+        Vector3 newPosition = transform.position;
+
+        // Move Left
         if (Input.GetKey(KeyCode.A))
         {
-            this.transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+            newPosition += Vector3.left * moveSpeed * Time.deltaTime;
         }
-        else if (Input.GetKey(KeyCode.D))
+
+        // Move Right
+        if (Input.GetKey(KeyCode.D))
         {
-            this.transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+            newPosition += Vector3.right * moveSpeed * Time.deltaTime;
         }
+
+        // Clamp position within screen bounds
+        newPosition.x = Mathf.Clamp(newPosition.x, leftEdge.x + 1.0f, rightEdge.x - 1.0f);
+
+        // Apply the clamped position
+        transform.position = newPosition;
 
         if (Input.GetKey(KeyCode.Space) && Time.time >= nextFireTime)
         {

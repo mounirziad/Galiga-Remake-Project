@@ -62,9 +62,13 @@ public class GameManager : MonoBehaviour
         DestroyBossShield();
 
         // Check if enemiesdestroyed has reached 48
-        if ((GameObject.FindGameObjectsWithTag("AppleEnemy").Length == 0 && GameObject.FindGameObjectsWithTag("CookieEnemy").Length == 0 && GameObject.FindGameObjectsWithTag("PineappleEnemy").Length == 0))
+        if (currentScene.name == "GeneralCombat")
         {
-            StartCoroutine(LoadNextSceneAfterDelay(3f)); // Wait 3 seconds before loading the next scene
+
+            if ((GameObject.FindGameObjectsWithTag("AppleEnemy").Length == 0 && GameObject.FindGameObjectsWithTag("CookieEnemy").Length == 0 && GameObject.FindGameObjectsWithTag("PineappleEnemy").Length == 0))
+            {
+                StartCoroutine(LoadNextSceneAfterDelay(3f)); // Wait 3 seconds before loading the next scene
+            }
         }
     }
 
@@ -91,10 +95,10 @@ public class GameManager : MonoBehaviour
             Destroy(lives[playerLives]);
         }
 
-        /*if (playerLives < 0)
+        if (playerLives < 0)
         {
             StartCoroutine(TransitionToGameOver());
-        }*/
+        }
     }
 
     private IEnumerator TransitionToGameOver()
@@ -111,6 +115,7 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
+
     }
 
     IEnumerator SpawnBossSequence()

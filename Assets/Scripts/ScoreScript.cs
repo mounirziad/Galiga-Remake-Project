@@ -30,6 +30,8 @@ public class ScoreScript : MonoBehaviour
     void Update()
     {
 
+
+
         if (score > oneUpScore && oneUpFlag == false)
         {
             // playerLives += 1;

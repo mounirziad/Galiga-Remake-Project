@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossMovement : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class BossMovement : MonoBehaviour
     public Sprite normalSprite;  // Default boss sprite
     public Sprite fireSprite;    // Firing sprite
     private SpriteRenderer spriteRenderer;
-
+    Scene currentScene;
     private BossAttack bossAttack; // Reference to BossAttack script
 
     void Start()
@@ -21,6 +22,7 @@ public class BossMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>(); // Get the sprite renderer
         bossAttack = GetComponent<BossAttack>(); // Get the BossAttack component
         StartCoroutine(BossIntroSequence());
+        currentScene = SceneManager.GetActiveScene();
     }
 
     void Update()
@@ -35,12 +37,17 @@ public class BossMovement : MonoBehaviour
             // Switches movement direction when hitting an edge
             if (direction == Vector3.right && transform.position.x >= (rightEdge.x - 1.5f))
             {
-                direction.x *= -1.0f;
+                direction.x = -1.0f;
             }
             else if (direction == Vector3.left && transform.position.x <= (leftEdge.x + 1.5f))
             {
-                direction.x *= -1.0f;
+                direction.x = 1.0f;
             }
+        }
+
+        if (bossHealth <= 0)
+        {
+            SceneManager.LoadScene("Victory");
         }
     }
 
@@ -76,4 +83,5 @@ public class BossMovement : MonoBehaviour
         canShoot = true;
         bossAttack.StartShooting(); // Start the attack routine
     }
+
 }

@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 353655772}
   m_Layer: 0
   m_Name: Quad
-  m_TagString: Untagged
+  m_TagString: Boundary
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -409,8 +409,8 @@ Transform:
   m_GameObject: {fileID: 353655771}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: 4.98, z: 0}
-  m_LocalScale: {x: 13.659351, y: 23.5, z: 1}
+  m_LocalPosition: {x: 0.0071, y: 4.8609, z: 0}
+  m_LocalScale: {x: 12.123323, y: 21.460913, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
