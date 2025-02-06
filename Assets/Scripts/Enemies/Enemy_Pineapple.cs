@@ -10,12 +10,15 @@ public class Enemy_Pineapple : MonoBehaviour
     public float minDelay = 10.0f;
     public float maxDelay = 30.0f;
     public int numSections = 3;
+    GameObject scoreManagerObject;
 
     private bool isMoving = false;
     public bool isCounted = false; // Flag to track if the enemy has been counted
 
     void Start()
     {
+        scoreManagerObject = GameObject.Find("ScoreManager");
+        scoreScript = scoreManagerObject.GetComponent<ScoreScript>();
         StartCoroutine(StartMovingAfterDelay());
     }
 

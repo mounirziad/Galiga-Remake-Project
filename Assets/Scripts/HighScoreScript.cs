@@ -9,7 +9,10 @@ public class HighScoreScript : MonoBehaviour
     [SerializeField] private ScoreScript scoreScript; // Reference to the ScoreScript
 
     private int highScore = 0; // To store the current high score
-
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     void Start()
     {
         // Initialize the high score text

@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 0d3eef745094ac148bfd3da2562a421a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7566ae022029a0c42ba0097093ee851d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,8 +103,8 @@ MonoBehaviour:
   moveSpeed: 5
   bulletSpawnPoint: {fileID: 1484969952747994879}
   bulletPrefab: {fileID: 5018199474911715076, guid: 74276e80488efb54e9a307311c7321ee, type: 3}
-  bulletSpeed: 10
-  fireRate: 0.3
+  bulletSpeed: 30
+  fireRate: 0.05
   isFrozen: 0
 --- !u!50 &4962979369506022137
 Rigidbody2D:
