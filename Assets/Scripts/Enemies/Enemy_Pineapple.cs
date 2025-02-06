@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class Enemy_Pineapple : MonoBehaviour
 {
+    ScoreScript scoreScript;
     public float speed = 5.0f;
     private Vector3 direction = Vector2.down;
     public float minDelay = 10.0f;
     public float maxDelay = 30.0f;
     public int numSections = 3;
-    GameObject scoreManagerObject;
-    ScoreScript scoreScript;
+
     private bool isMoving = false;
     public bool isCounted = false; // Flag to track if the enemy has been counted
 
     void Start()
     {
-        scoreManagerObject = GameObject.Find("ScoreManager");
-        scoreScript = scoreManagerObject.GetComponent<ScoreScript>();
         StartCoroutine(StartMovingAfterDelay());
     }
 
@@ -26,12 +24,6 @@ public class Enemy_Pineapple : MonoBehaviour
         if (isMoving)
         {
             Launch();
-        }
-
-        // Destroys enemy after all sections have been destroyed
-        if (numSections == 0)
-        {
-            Destroy(gameObject);
         }
 
         Vector3 bottomEdge = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0f, 0f));
